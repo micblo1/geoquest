@@ -618,7 +618,7 @@ window.onload = () => {
       name: "El Salvador",
       info: {
         description:
-          "El Salvador is the smallest and most densely populated of the seven Central American countries. Despite having little level land, it traditionally was an agricultural country, heavily dependent upon coffee exports. By the end of the 20th century, however, the service sector had come to dominate the economy. It is known also as 'the land of the valcanoes', as it has many.",
+          "El Salvador is the smallest and most densely populated of the seven Central American countries. Despite having little level land, it traditionally was an agricultural country, heavily dependent upon coffee exports. By the end of the 20th century, however, the service sector had come to dominate the economy. It is known also as 'the land of the volcanoes', as it has many.",
         map: "assets/elsalvador-map.png",
         flag: "assets/elsalvador-flag.png",
         details: {
