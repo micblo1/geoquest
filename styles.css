@@ -1,0 +1,836 @@
+/* Global Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+ }
+ 
+ 
+ body, html {
+  width: 100%;
+  height: 100%;
+  font-family: 'DM Sans', sans-serif;
+  background-color: #232E57;
+  color: #000000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+ }
+ 
+ 
+ .hidden {
+  display: none;
+ }
+ 
+ 
+ /* Intro Screen */
+ #intro-screen {
+  background-color: #232E57;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  position: absolute;
+  top: 0;
+  left: 0;
+ }
+ 
+ #feedback-screen {
+  z-index: 9999;
+ }
+
+ #logo {
+  max-width: 500px;
+  opacity: 1;
+  position: absolute;
+ }
+ 
+ 
+ #globe {
+  max-width: 100px;
+  opacity: 0;
+  position: absolute;
+ }
+ 
+ 
+ /* Animations */
+ @keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+ }
+ 
+ 
+ .hidden {
+  display: none;
+ }
+ 
+ 
+ 
+ 
+ @keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+ }
+ 
+ 
+ @keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+ }
+ 
+ 
+ 
+ 
+ /* Home Screen Styles */
+ #home-screen {
+  z-index: 50;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #ffffff; /* White background */
+  display: none; /* Hidden initially */
+  opacity: 1; /* Ensure it's visible without fading further */
+  transition: none; /* Remove any transitions */
+ }
+ 
+ 
+ #correct-flag-image-container {
+  margin: 20px 0;
+ }
+ 
+ 
+ /* Reset other screens completely */
+ #map-lesson-screen,
+ #flag-lesson-screen,
+ #country-info-screen,
+ #feedback-screen,
+ #lesson-complete-screen {
+  display: none; /* Hidden when not in use */
+  opacity: 0;
+  transition: none; /* Disable transitions when hidden */
+ }
+ 
+ 
+ 
+ 
+ header {
+  text-align: center;
+  margin-bottom: 40px;
+ }
+ 
+ 
+ #geoquest-title {
+  max-width: 200px;
+  width: 100%;
+  margin: 0 auto;
+  margin-top: 20px;
+ }
+ 
+ 
+ 
+ 
+ 
+ 
+ /* Category Sections */
+ .section {
+  margin-bottom: 40px;
+  text-align: left;
+  padding-left: 75px;
+ }
+ 
+ 
+ .section h2 {
+  font-size: 1.8em;
+  margin-bottom: 10px;
+  position: relative;
+  color: #000;
+ }
+ 
+ 
+ .section h2::after {
+  content: '';
+  display: block;
+  width: calc(100% - 150px);
+  height: 2px;
+  background-color: #000000;
+  margin-top: 8px;
+ }
+ 
+ 
+ /* Lesson Grid */
+ .lesson-grid {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 40px;
+ }
+ 
+ 
+ .lesson {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 110px;
+ }
+ 
+ 
+ .lesson img {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  margin-bottom: 8px;
+ }
+ 
+ 
+ .lesson p {
+  margin-top: 8px;
+  font-size: 1em;
+  font-weight: 700;
+  color: #000;
+  font-family: 'DM Sans', sans-serif;
+ }
+ 
+ 
+ /* Dynamic UI Card */
+ #dynamic-ui {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 100;
+  display: none;
+  justify-content: center;
+  align-items: center;
+ }
+ 
+ 
+ .ui-card {
+  width: 300px;
+  padding: 20px;
+  background-color: #D2A366;
+  color: #fff;
+  border-radius: 12px;
+  z-index: 100;
+  text-align: center;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+ }
+ 
+ 
+ .ui-card h3 {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+ }
+ 
+ 
+ .ui-card p {
+  font-size: 1em;
+  margin-bottom: 20px;
+ }
+ 
+ 
+ .ui-card button {
+  padding: 12px 20px;
+  background-color: #ffffff;
+  color: #D2A366;
+  font-weight: bold;
+  font-size: 1em;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+ }
+ 
+ 
+ .ui-card button:hover {
+  background-color: #D2A366;
+  color: #ffffff;
+  transform: scale(1.05);
+ }
+ 
+ 
+ /* Next Button */
+ button.next {
+  margin-top: 20px;
+  padding: 15px 25px;
+  background-color: #F4A261;
+  color: #ffffff;
+  font-size: 1.2em;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+ }
+ 
+ 
+ button.next:hover {
+  background-color: #E76F51;
+ }
+ 
+ 
+ /* General Screen Transitions */
+ #map-lesson-screen,
+ #flag-lesson-screen,
+ #country-info-screen,
+ #feedback-screen,
+ #lesson-complete-screen {
+  z-index: 40; /* Slightly below the home screen */
+  display: none; /* Hidden when not in use */
+  opacity: 0; /* Fully transparent */
+  transition: opacity 0.5s ease-in-out; /* Smooth transitions */
+ }
+ 
+ 
+ 
+ 
+ /* Country Info Screen */
+ #country-info-screen {
+  text-align: center;
+  padding: 40px;
+  color: #ffffff;
+ }
+ 
+ 
+ .info-container h2 {
+  font-size: 3em;
+  margin-bottom: 20px;
+ }
+ 
+ 
+ .info-content {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+ }
+ 
+ 
+ .map-image, .flag-image {
+  height: 300px;
+  width: auto;
+  margin: 10px;
+ }
+ 
+ 
+ .country-details p {
+  margin: 8px 0;
+  font-size: 1.2em;
+ }
+ 
+ 
+ /* Updated Country Info Description */
+ .country-description {
+  margin-top: 20px;
+  margin-bottom: 40px;
+  max-width: 900px; /* Matches the width of the info-content */
+  padding: 0; /* Removes unnecessary padding */
+  font-size: 1.2em;
+  text-align: center;
+  color: #ffffff;
+  margin-left: auto;
+  margin-right: auto;
+ }
+ 
+ 
+ 
+ 
+ 
+ 
+ /* Flag Lesson Screen - Fixed Centering */
+ #flag-lesson-screen {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  display: none; /* Hide initially */
+  padding: 40px;
+  color: #ffffff;
+ }
+ .flag-options {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: nowrap; /* Prevent wrapping */
+  overflow-x: auto; /* Enable horizontal scrolling */
+  padding: 10px;
+ }
+ 
+ 
+ .flag-option img {
+  width: 200px;
+  height: auto;
+  border-radius: 8px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+ }
+ 
+ 
+ .flag-option.selected img {
+  border: 4px solid #2A9D8F;
+ }
+ 
+ 
+ 
+ 
+ .question-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+ }
+ 
+ 
+ .question-container h2 {
+  font-size: 3em;
+  margin-bottom: 30px;
+ }
+ 
+ 
+ 
+ 
+ 
+ 
+ .question-container button {
+  margin-top: 40px;
+  padding: 15px 40px;
+  background: #F4A261;
+  color: white;
+  font-size: 1.8em;
+  font-weight: bold;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+ }
+ 
+ 
+ .question-container button:hover {
+  background: #E76F51;
+  transform: scale(1.05);
+ }
+ 
+ 
+ 
+ 
+ /* Feedback Screen */
+ .feedback-container {
+  text-align: center;
+  padding: 20px;
+
+ }
+ 
+ 
+ /* Lesson Complete Screen */
+ .complete-container {
+  text-align: center;
+  padding: 20px;
+ }
+ 
+ 
+ /* Lesson Transitions */
+ @keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+ }
+ 
+ 
+ @keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; visibility: hidden; }
+ }
+ 
+ 
+ 
+ 
+ 
+ 
+ /* Info and Flag Lesson Screens */
+ #country-info-screen, #flag-lesson-screen {
+  display: none;
+  opacity: 0;
+  animation: fadeIn 1s ease-in-out forwards;
+  text-align: center;
+  padding: 20px;
+ }
+ 
+ 
+ .info-container h2, .question-container h2 {
+  font-size: 2em;
+  margin-bottom: 20px;
+ }
+ 
+ 
+ .info-content, .flag-options {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+ }
+ 
+ 
+ .map-image, .flag-image {
+  height: 300px;
+  width: auto;
+  margin: 10px;
+ }
+ 
+ 
+ 
+ 
+ .flag-option:hover img {
+  transform: scale(1.1);
+ }
+ 
+ 
+ 
+ 
+ 
+ 
+ .next, .question-container button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background: #F4A261;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+ }
+ 
+ 
+ .next:hover, .question-container button:hover {
+  background: #E76F51;
+ 
+ 
+  }/* Feedback Screen */
+ 
+ 
+ #feedback-screen {
+  position: fixed;
+  left: 50%;
+  transform: translate(-50%, 0); /* Center horizontally */
+  background-color: #232E57;
+  color: #ffffff;
+  border-radius: 12px;
+  text-align: center;
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: calc(100% - 40px); /* Responsive width with padding */
+  max-width: 700px; /* Prevent it from being too wide */
+  max-height: calc(100% - 160px);
+  overflow-y: auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  z-index: 999;
+  margin-top: 60px;
+  
+ }
+ 
+ 
+ @media (max-width: 500px) {
+  #feedback-screen {
+    width: calc(100% - 20px); /* Adjust width for smaller screens */
+    top: 60px; /* Reduce spacing for very small devices */
+    bottom: 60px;
+  }
+}
+
+ 
+ #feedback-title {
+  font-size: 2.5em;
+  font-weight: 900;
+  margin-top: 10px;
+  margin-bottom: 10px; /* Reduce spacing */
+ }
+ 
+ 
+ #feedback-message {
+  font-size: 1.5em;
+
+ }
+ 
+ 
+ #feedback-screen button {
+  padding: 15px 30px;
+  background-color: #F4A261;
+  color: white;
+  font-size: 1.2em;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+ }
+ 
+ 
+ 
+ 
+ #feedback-screen button:hover {
+  background-color: #E76F51;
+ }
+ 
+ 
+ /* Lesson Complete Screen */
+ #lesson-complete-screen {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #f5f5dc; /* Cream color */
+  color: #232E57; /* Adjust text color for contrast */
+  border-radius: 12px;
+  text-align: center;
+  padding: 40px;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  z-index: 999;
+ }
+ 
+ 
+ #lesson-complete-screen h2 {
+  font-size: 2.5em;
+  margin-bottom: 20px;
+ }
+ 
+ 
+ #lesson-accuracy, #lesson-time {
+  font-size: 1.5em;
+  margin-bottom: 20px;
+ }
+ 
+ 
+ #lesson-complete-screen button {
+  padding: 15px 30px;
+  background-color: #232E57;
+  color: white;
+  font-size: 1.2em;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+ }
+ 
+ 
+ #lesson-complete-screen button:hover {
+  background-color: #1e2a47;
+ }
+ 
+ 
+ /* Lesson Header */
+ #lesson-header {
+  display: none; /* Hidden by default */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #1b2838; /* Darker blue than the background */
+  color: #ffffff;
+  padding: 10px 20px;
+  z-index: 1000;
+  border-bottom: 2px solid #141e29;
+  justify-content: space-between;
+  align-items: center;
+  opacity: 0; /* For smooth fade-in */
+  animation: fadeIn 1s ease-in-out forwards; /* Matches the lesson fade-in timing */
+ }
+ 
+ 
+ #current-lesson {
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #ffffff;
+ }
+ 
+ 
+ #progress-bar-container {
+  flex-grow: 1;
+  height: 8px;
+  background-color: #141e29; /* Subtle dark contrast */
+  border-radius: 4px;
+  margin: 0 20px;
+  overflow: hidden;
+ }
+ 
+ 
+ #progress-bar {
+  height: 100%;
+  width: 0%; /* Start with 0 width */
+  background-color: #4a90e2; /* Bright blue for progress */
+  transition: width 0.5s ease, background-color 0.3s ease, opacity 0.5s ease; /* Smooth fade and resize */
+ }
+ 
+ 
+ 
+ 
+ 
+ 
+ #exit-lesson-btn {
+  padding: 8px 20px;
+  font-size: 1em;
+  background-color: #e76f51;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+ }
+ 
+ 
+ #exit-lesson-btn:hover {
+  background-color: #d65c41;
+ }
+ 
+ 
+ /* Fade-In Animation */
+ @keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+ }
+ 
+ 
+ #map-lesson-screen {
+  display: none; /* Initially hidden */
+  opacity: 0;
+  animation: fadeIn 1s ease-in-out forwards;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #232E57;
+  color: #ffffff;
+  padding: 20px;
+  width: 80%;
+  height: 100%;
+ }
+ 
+ 
+ .map-header {
+  text-align: center;
+  margin-bottom: 20px;
+ }
+ 
+ 
+ #map-question {
+  font-size: 2em;
+  font-weight: bold;
+  color: #ffffff;
+  margin-bottom: 20px; /* Adds padding below the title */
+  text-align: center;
+ }
+ 
+ 
+ 
+ 
+ #map-container {
+  width: 90%; /* Adjust for better centering */
+  height: 400px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  background-color: #eaeaea; /* Light gray as fallback */
+  margin: 20px auto; /* Center horizontally with auto margins */
+ }
+ 
+ 
+ #submit-locate {
+  padding: 15px 30px;
+  font-size: 1.2em;
+  font-weight: bold;
+  background-color: #F4A261;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+ }
+ 
+ 
+ #submit-locate:hover {
+  background-color: #E76F51;
+ }
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ #map-lesson-screen button {
+  padding: 10px 20px;
+  background-color: #F4A261;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+ }
+ 
+ 
+ #map-lesson-screen button:hover {
+  background-color: #E76F51;
+ }
+ 
+ 
+ #feedback-map {
+  width: calc(100% - 40px); /* Add padding */
+  max-width: 650px; /* Limit max width */
+  height: 200px; /* Keep map smaller to fit the screen */
+  margin: 20px 0; /* Add spacing above and below */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+ }
+ 
+ 
+ 
+
+ 
+ 
+ 
+ #feedback-text {
+  font-family: "DM Sans", sans-serif;
+  color: white;
+  margin-top: 10px;
+  text-align: center;
+ }
+ 
+ 
+ .correct-marker,
+ .guessed-marker {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+ }
+ #correct-location-container {
+  flex-shrink: 0; /* Prevents shrinking when space is tight */
+  width: 100%; /* Ensure map spans the container */
+  height: 400px; /* Default height */
+  margin: 20px 0; /* Add spacing around the map */
+  border-radius: 8px;
+  padding: 10px; /* Add padding to improve appearance */
+  background-color: #ffffff; /* Add a background for better visuals */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+ }
+ 
+ 
+ 

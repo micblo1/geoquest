@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>GeoQuest</title>
+ <link rel="stylesheet" href="styles.css">
+ <link rel="stylesheet" href="leaflet/leaflet.css">
+ <script src="leaflet/leaflet.js"></script>
+ <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+
+
+</head>
+<body>
+
+
+
+
+<!-- Intro Screen -->
+<div id="intro-screen">
+ <img src="assets/logo.png" alt="Logo" id="logo">
+ <img src="assets/globe-icon.png" alt="Globe" id="globe">
+</div>
+
+
+<!-- Home Screen -->
+<div id="home-screen" class="hidden">
+ <header>
+   <img src="assets/geoquest-title.png" alt="GeoQuest Title" id="geoquest-title">
+ </header>
+
+
+ <!-- Locate Section -->
+ <div class="section">
+   <h2>Locate</h2>
+   <div class="lesson-grid">
+     <div class="lesson" onclick="showLessonUI('Southeast Asia', 'locate')">
+       <img src="assets/lesson-icon.png" alt="Southeast Asia">
+       <p>Southeast Asia</p>
+     </div>
+     <div class="lesson" onclick="showLessonUI('Central Asia', 'locate')">
+       <img src="assets/lesson-icon.png" alt="Central Asia">
+       <p>Central Asia</p>
+       </div>
+     <div class="lesson" onclick="showLessonUI('West Africa', 'locate')">
+       <img src="assets/lesson-icon.png" alt="West Africa">
+       <p>West Africa</p>
+     </div>
+     <div class="lesson" onclick="showLessonUI('South America', 'locate')">
+       <img src="assets/lesson-icon.png" alt="South America">
+       <p>South America</p>
+     </div>
+     </div>
+ </div>
+
+
+ <!-- Flags Section -->
+ <div class="section">
+   <h2>Flags</h2>
+   <div class="lesson-grid">
+     <div class="lesson" onclick="showLessonUI('Central America', 'flags')">
+       <img src="assets/lesson-icon.png" alt="Central America Flags">
+       <p>Central America</p>
+     </div>
+     <div class="lesson" onclick="showLessonUI('Western Europe', 'flags')">
+       <img src="assets/lesson-icon.png" alt="Western Europe Flags">
+       <p>Western Europe</p>
+     </div>
+     <div class="lesson" onclick="showLessonUI('Eastern Europe', 'flags')">
+       <img src="assets/lesson-icon.png" alt="Eastern Europe Flags">
+       <p>Eastern Europe</p>
+     </div>
+     <div class="lesson" onclick="showLessonUI('Asia', 'flags')">
+       <img src="assets/lesson-icon.png" alt="Asia Flags">
+       <p>Asia</p>
+     </div>
+   </div>
+ </div>
+</div>
+
+
+<!-- Country Info Screen -->
+<div id="country-info-screen" class="hidden">
+ <div class="info-container">
+   <h2>Country Name</h2>
+   <div class="info-content">
+     <img src="assets/sample-map.png" alt="Country Map" class="map-image">
+     <img src="assets/sample-flag.png" alt="Country Flag" class="flag-image">
+     <div class="country-details">
+       <p><strong>Capital:</strong> Capital Name</p>
+       <p><strong>Area:</strong> Area Size</p>
+       <p><strong>Population:</strong> Population Size</p>
+       <p><strong>Language:</strong> Language Name</p>
+     </div>
+   </div>
+
+
+   <p class="country-description">
+     Country description goes here.
+   </p>
+
+
+   <button class="next" onclick="nextStep()">Next</button>
+ </div>
+</div>
+
+
+<div id="map-lesson-screen" style="display: none;">
+ <div id="selected-country-display" style="margin: 20px 0; font-size: 1.2em; color: white; text-align: center;"></div>
+ <h2 id="map-question">Locate the country on this map</h2>
+ <div id="map-container" style="width: 100%; height: 400px;"></div>
+ <button id="submit-locate" onclick="submitLocate()">Submit</button>
+</div>
+
+
+
+
+
+
+<!-- Flag Lesson Screen -->
+<div id="flag-lesson-screen" class="hidden">
+ <div class="question-container">
+   <h2>Question Text</h2>
+   <div class="flag-options">
+     <div class="flag-option" onclick="selectFlag(this, false)">
+       <img src="assets/sample-flag.png" alt="Option 1">
+     </div>
+     <div class="flag-option" onclick="selectFlag(this, true)">
+       <img src="assets/sample-flag.png" alt="Option 2">
+     </div>
+     <div class="flag-option" onclick="selectFlag(this, false)">
+       <img src="assets/sample-flag.png" alt="Option 3">
+     </div>
+     <div class="flag-option" onclick="selectFlag(this, false)">
+       <img src="assets/sample-flag.png" alt="Option 4">
+     </div>
+   </div>
+   <button onclick="submitAnswer()">Submit</button>
+ </div>
+</div>
+
+
+<div id="feedback-screen">
+ <div id="feedback-title"></div>
+ <div id="feedback-message"></div>
+  <!-- Correct Flag Container -->
+ <div id="correct-flag-container" style="display: none;">
+   <img id="correct-flag-image" style="width: 150px; border-radius: 8px; margin-top: 20px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);" alt="Correct Flag">
+ </div>
+
+
+ <div id="correct-flag-image-container" class="feedback-content"></div>
+
+
+  <!-- Correct Location Container -->
+ <div id="correct-location-container" style="display: none; width: 100%; height: 400px; margin-top: 20px;"></div>
+  <button id="continue-btn">Continue</button>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+<!-- Lesson Complete Screen -->
+<div id="lesson-complete-screen" class="hidden">
+ <h2>Lesson Complete!</h2>
+ <p id="lesson-accuracy">Accuracy:</p>
+ <p id="lesson-time">Time:</p>
+ <button id="back-home-btn" onclick="returnToHome()">Back to Home</button>
+</div>
+
+
+<div id="exit-confirmation-modal" class="hidden">
+ <div class="modal-content">
+   <h3>Are you sure you want to exit the lesson?</h3>
+   <button id="exit-confirm-yes" onclick="returnToHome()">Yes</button>
+   <button id="exit-confirm-no" onclick="closeExitModal()">No</button>
+ </div>
+</div>
+
+
+
+
+<!-- Dynamic Start UI -->
+<div id="dynamic-ui" class="hidden" onclick="hideLessonUI(event)">
+ <div class="ui-card" onclick="stopPropagation(event)">
+   <h3 id="lesson-title">Lesson</h3>
+   <p>Start your lesson now!</p>
+   <button onclick="startLesson()">Start</button>
+ </div>
+</div>
+
+
+<!-- Lesson Header -->
+<div id="lesson-header" class="hidden">
+ <div id="current-lesson">Lesson Name</div>
+ <div id="progress-bar-container">
+   <div id="progress-bar"></div>
+ </div>
+ <button id="exit-lesson-btn" onclick="returnToHome()">Exit Lesson</button>
+</div>
+
+
+
+
+
+
+
+
+
+
+<script src="script.js"></script>
+</body>
+</html>
+
+
