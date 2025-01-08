@@ -100,6 +100,7 @@
   display: none; /* Hidden initially */
   opacity: 1; /* Ensure it's visible without fading further */
   transition: none; /* Remove any transitions */
+  overflow-y: auto; /* Allow vertical scrolling */
  }
  
  
